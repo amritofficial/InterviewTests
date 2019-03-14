@@ -81,13 +81,12 @@ namespace GraduationTracker.Tests.Unit
                 graduated.Add(tracker.HasGraduated(diploma, student));
             }
 
+            // Running a set of assert statements with the expected result 
             Assert.IsTrue(graduated.Any());
             Assert.IsFalse(graduated.Any(t => t.Item2 == STANDING.Average));
             Assert.IsTrue(graduated.Any(t => t.Item2 == STANDING.MagnaCumLaude));
             Assert.IsFalse(graduated.Any(t => t.Item2 == STANDING.SumaCumLaude));
             Assert.IsTrue(graduated.Any(t => t.Item2 == STANDING.Remedial));
-
-
         }
 
 

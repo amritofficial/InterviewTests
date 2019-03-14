@@ -8,22 +8,28 @@ namespace GraduationTracker
 {
     public class Repository
     {
+        // Using linq queries to efficiently retrieve student by id
+        // @Param int id
         public static Student GetStudent(int id)
         {
             return GetStudents().Where(student => student.Id == id).Select(student => student).FirstOrDefault();
         }
 
+        // Using linq queries to efficiently retrieve diploma by id
+        // @Param int id
         public static Diploma GetDiploma(int id)
         {
             return GetDiplomas().Where(diploma => diploma.Id == id).Select(diploma => diploma).FirstOrDefault();
         }
 
+        // Using linq queries to efficiently retrieve requirment by id
+        // @Param int id
         public static Requirement GetRequirement(int id)
         {
             return GetRequirements().Where(requirement => requirement.Id == id).Select(requirement => requirement).FirstOrDefault();
         }
 
-
+        //Retrieve diplomas with the set of requirements
         private static Diploma[] GetDiplomas()
         {
             return new[]

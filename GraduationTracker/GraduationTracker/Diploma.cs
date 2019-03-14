@@ -10,6 +10,7 @@ namespace GraduationTracker
     {
         public int Id { get; set; }
         public int Credits { get; set; }
+        // Requirements mapped to diploma 
         public Requirement[] Requirements { get; set; }
     }
 }

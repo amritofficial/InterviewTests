@@ -14,6 +14,7 @@ namespace GraduationTracker
             var average = 0;
             var TotalCourses = 0;
 
+            // Made efficient use of link queries to retrieve the required information
             for (int i = 0; i < diploma.Requirements.Length; i++)
             {
                 Course[] courses = student.Courses.Where(course => diploma.Requirements[i].Courses.Contains(course.Id)).ToArray<Course>();

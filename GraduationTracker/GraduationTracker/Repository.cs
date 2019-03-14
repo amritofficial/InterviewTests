@@ -10,48 +10,17 @@ namespace GraduationTracker
     {
         public static Student GetStudent(int id)
         {
-            var students = GetStudents();
-            Student student = null;
-
-            for (int i = 0; i < students.Length; i++)
-            {
-                if (id == students[i].Id)
-                {
-                    student = students[i];
-                }
-            }
-            return student;
+            return GetStudents().Where(student => student.Id == id).Select(student => student).FirstOrDefault();
         }
 
         public static Diploma GetDiploma(int id)
         {
-            var diplomas = GetDiplomas();
-            Diploma diploma = null;
-
-            for (int i = 0; i < diplomas.Length; i++)
-            {
-                if (id == diplomas[i].Id)
-                {
-                    diploma = diplomas[i];
-                }
-            }
-            return diploma;
-
+            return GetDiplomas().Where(diploma => diploma.Id == id).Select(diploma => diploma).FirstOrDefault();
         }
 
         public static Requirement GetRequirement(int id)
         {
-            var requirements = GetRequirements();
-            Requirement requirement = null;
-
-            for (int i = 0; i < requirements.Length; i++)
-            {
-                if (id == requirements[i].Id)
-                {
-                    requirement = requirements[i];
-                }
-            }
-            return requirement;
+            return GetRequirements().Where(requirement => requirement.Id == id).Select(requirement => requirement).FirstOrDefault();
         }
 
 
@@ -63,15 +32,18 @@ namespace GraduationTracker
                 {
                     Id = 1,
                     Credits = 4,
-                    Requirements = new int[]{100,102,103,104}
+                    Requirements = new Requirement[] { Repository.GetRequirement(100),
+                                                   Repository.GetRequirement(102),
+                                                   Repository.GetRequirement(103),
+                                                   Repository.GetRequirement(104) }
                 }
             };
         }
 
         public static Requirement[] GetRequirements()
-        {   
-                return new[]
-                {
+        {
+            return new[]
+            {
                     new Requirement{Id = 100, Name = "Math", MinimumMark=50, Courses = new int[]{1}, Credits=1 },
                     new Requirement{Id = 102, Name = "Science", MinimumMark=50, Courses = new int[]{2}, Credits=1 },
                     new Requirement{Id = 103, Name = "Literature", MinimumMark=50, Courses = new int[]{3}, Credits=1},

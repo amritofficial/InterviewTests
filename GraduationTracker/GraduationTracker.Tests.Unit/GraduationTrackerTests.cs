@@ -17,7 +17,10 @@ namespace GraduationTracker.Tests.Unit
             {
                 Id = 1,
                 Credits = 4,
-                Requirements = new int[] { 100, 102, 103, 104 }
+                Requirements = new Requirement[] { Repository.GetRequirement(100),
+                                                   Repository.GetRequirement(102),
+                                                   Repository.GetRequirement(103),
+                                                   Repository.GetRequirement(104) }
             };
 
             var students = new[]
@@ -70,16 +73,20 @@ namespace GraduationTracker.Tests.Unit
 
             //tracker.HasGraduated()
         };
-            
+
             var graduated = new List<Tuple<bool, STANDING>>();
 
-            foreach(var student in students)
+            foreach (var student in students)
             {
-                graduated.Add(tracker.HasGraduated(diploma, student));      
+                graduated.Add(tracker.HasGraduated(diploma, student));
             }
 
-            
-            Assert.IsFalse(graduated.Any());
+            Assert.IsTrue(graduated.Any());
+            Assert.IsFalse(graduated.Any(t => t.Item2 == STANDING.Average));
+            Assert.IsTrue(graduated.Any(t => t.Item2 == STANDING.MagnaCumLaude));
+            Assert.IsFalse(graduated.Any(t => t.Item2 == STANDING.SumaCumLaude));
+            Assert.IsTrue(graduated.Any(t => t.Item2 == STANDING.Remedial));
+
 
         }
 
